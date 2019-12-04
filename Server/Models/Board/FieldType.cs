@@ -4,8 +4,9 @@ namespace Server.Models.Board
 {
     public enum FieldType
     {
+       Empty,
        Ship,
        Miss,
-       Empty
+       Hit
     }
 }

@@ -7,11 +7,11 @@ using Server.Models.Ships;
 
 namespace Server.Services
 {
-    public class Game
+    public class Game : IGame
     {
         public GameBoard PlayerGameBoard { get; set;}
         public GameBoard EnemyGameBoard { get; set;}
-        public Shipyard Shipyard { get; }
+        public Shipyard Shipyard { get; set; }
 
 
         public Game()
@@ -30,6 +30,24 @@ namespace Server.Services
                 .Where(boardSquare => shipSquare.Coordinates.Column == boardSquare.Coordinates.Column && shipSquare.Coordinates.Row == boardSquare.Coordinates.Row)))
             {
                 boardSquare.fieldType = FieldType.Ship;
+            }
+        }
+
+        public void Shoot(Coordinates coordinates)
+        {
+            foreach (var square in PlayerGameBoard.Board)
+            {
+                if (square.Coordinates.Column == coordinates.Column && square.Coordinates.Row == coordinates.Row)
+                {
+                    if (square.IsOccupied())
+                    {
+                        square.fieldType = FieldType.Miss;
+                    }
+                    else
+                    {
+                        square.fieldType = FieldType.Hit;
+                    }
+                }
             }
         }
 

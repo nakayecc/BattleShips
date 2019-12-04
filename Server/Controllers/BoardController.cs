@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Serialization;
 using Server.Models.Board;
+using Server.Services;
 
 
 namespace Server.Controllers
@@ -13,15 +14,19 @@ namespace Server.Controllers
     [EnableCors("AllowMyOrigin")]
     public class BoardController : ControllerBase
     {
-        public Services.Board GameBoard= new Services.Board();
+        public BoardController(IGame game)
+        {
+            this.game = game;
+        }
 
-            // GET: api/Board
+        private readonly IGame game;
+
+        // GET: api/Board
         [HttpGet]
         public List<Square> Get()
         {
-            GameBoard.InitBoard();
-            
-            return GameBoard.GameBoard.Board;
+
+            return game.PlayerGameBoard.Board;
         }
 
         // GET: api/Board/5
@@ -34,9 +39,9 @@ namespace Server.Controllers
 
         // POST: api/Board
         [HttpPost]
-        public void Post([FromBody] Coordinates dict)
+        public void Post([FromBody] Coordinates coordinates)
         {
-            Console.WriteLine(dict);
+            game.Shoot(coordinates);
         }
 
         // PUT: api/Board/5
@@ -44,7 +49,6 @@ namespace Server.Controllers
         public void Put(int id, [FromBody] string value)
         {
             Console.WriteLine("jestem");
-            GameBoard.ChangeSquare(FieldType.Ship, id );
         }
 
         // DELETE: api/ApiWithActions/5
