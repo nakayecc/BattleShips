@@ -10,16 +10,19 @@ export default class Square extends Component {
         temp.map(square => {
                 if(clickedSquare.coordinates === square.coordinates){
                     square.fieldType = 0;
-                    axios.put('/board/'+this.props.squareId, square)
-                        .then(response => {
-                            console.log(response.status);
+                    axios.post('board', {
+                            row : 3,
+                            column : 2
+                        
+                    
+                        
+                        
+                    })
+                        .then(function (response) {
+                            console.log(response);
                         })
                         .catch(function (error) {
-                            // handle error
                             console.log(error);
-                        })
-                        .finally(function () {
-                            // always executed
                         });
                 }
                 return square;
