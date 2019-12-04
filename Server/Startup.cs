@@ -29,7 +29,9 @@ namespace Server
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowMyOrigin",
-                    builder => builder.WithOrigins("http://localhost:3000"));
+                    builder => builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyMethod());
+                    
             });
         }
 
