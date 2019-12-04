@@ -5,7 +5,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row mt-5">
                 <div className="col-lg-12 text-center">
                     <h1>BattleShips</h1>
                 </div>

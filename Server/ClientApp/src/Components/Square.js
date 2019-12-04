@@ -22,6 +22,7 @@ export default class Square extends Component {
                             // always executed
                         });
                 }
+                return square;
         });
         let hitSquaree = this.props.hitSquaree;
         hitSquaree(temp);
