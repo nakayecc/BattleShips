@@ -11,8 +11,8 @@ export default class Square extends Component {
             if (clickedSquare.coordinates === square.coordinates) {
                 square.fieldType = 0;
                 axios.post('board', {
-                    row: 3,
-                    column: 2
+                    row: square.coordinates.row,
+                    column: square.coordinates.column
                     
                 })
                     .then(function (response) {
