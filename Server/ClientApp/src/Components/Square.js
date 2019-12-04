@@ -10,7 +10,7 @@ export default class Square extends Component {
         return (
             <div className="col-xs-1-10 text-center square" id={this.props.square.id}>
 
-                <p className="squareValue">{this.props.square.isShip === true ? isShip : ocean}</p>
+                <p className="squareValue">{this.props.square.fieldType === 0 ? isShip : ocean}</p>
 
             </div>
 

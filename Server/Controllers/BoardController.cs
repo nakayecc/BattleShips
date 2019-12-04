@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Server.Models.Board;
+using Server.Services;
 
 namespace Server.Controllers
 {
@@ -14,13 +15,15 @@ namespace Server.Controllers
     [EnableCors("AllowMyOrigin")]
     public class BoardController : ControllerBase
     {
-        public GameBoard GameBoard = new GameBoard();
+        public Services.Board GameBoard= new Services.Board();
 
-        // GET: api/Board
+            // GET: api/Board
         [HttpGet]
-        public GameBoard Get()
+        public List<Square> Get()
         {
-            return GameBoard;
+            GameBoard.InitBoard();
+
+            return GameBoard.GameBoard.Board;
         }
 
         // GET: api/Board/5

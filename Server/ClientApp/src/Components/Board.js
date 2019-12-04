@@ -10,7 +10,7 @@ export default class Board extends Component {
     componentDidMount() {
         axios.get('/board')
             .then(response => {
-                this.setState({squares: response.data.board})
+                this.setState({squares: response.data})
             })
             .catch(function (error) {
                 // handle error
