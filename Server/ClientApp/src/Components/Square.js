@@ -33,12 +33,12 @@ export default class Square extends Component {
     render() {
         let isShip = "S";
         let ocean = "~~";
-        
+        // "col-xs-1-10 text-center"
         return (
-            <div className="col-xs-1-10 text-center square">
+            <div className={this.props.square.fieldType === 0 ? "col-xs-1-10 text-center squareShip" : "col-xs-1-10 text-center square"} onClick={this.hitSquare.bind(Square,this.props.square)}>
                 
 
-                <p className="squareValue" onClick={this.hitSquare.bind(Square,this.props.square)}>{this.props.square.fieldType === 0 ? isShip : ocean}</p>
+                <p className="squareValue">{this.props.square.fieldType === 0 ? isShip : ocean}</p>
 
             </div>
 
