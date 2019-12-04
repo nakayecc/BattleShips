@@ -12,9 +12,9 @@ namespace Server.Services
             this.GameBoard = new GameBoard();
         }
 
-        public void ChangeSquare(Square square, int squareIndex)
+        public void ChangeSquare(FieldType field, int squareIndex)
         {
-            GameBoard.Board[squareIndex] = square;
+            GameBoard.Board[squareIndex -1].fieldType = GameBoard.Board[squareIndex -1].fieldType = field ;
         }
 
     }
