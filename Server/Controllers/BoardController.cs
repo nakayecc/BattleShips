@@ -36,7 +36,7 @@ namespace Server.Controllers
         [HttpPost]
         public void Post([FromBody] Coordinates dict)
         {
-            Console.WriteLine("post");
+            Console.WriteLine(dict);
         }
 
         // PUT: api/Board/5
