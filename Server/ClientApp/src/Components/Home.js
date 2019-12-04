@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import Board from "./Board";
-import AddEmployee from "./AddEmployee";
 
 export default class Home extends Component {
 
