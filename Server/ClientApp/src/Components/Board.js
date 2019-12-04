@@ -36,6 +36,7 @@ export default class Board extends Component {
                     squareId = {counter++}
                     hitSquaree = {this.hitSquaree}
                     squares = {this.state.squares}
+                    key={counter++}
                     />
             )
         )

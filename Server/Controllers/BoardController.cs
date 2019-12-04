@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 using Server.Models.Board;
-using Server.Services;
+
 
 namespace Server.Controllers
 {
@@ -36,9 +34,9 @@ namespace Server.Controllers
 
         // POST: api/Board
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Coordinates dict)
         {
-            Console.WriteLine("post");
+            Console.WriteLine(dict);
         }
 
         // PUT: api/Board/5

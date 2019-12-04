@@ -6,6 +6,10 @@
 
         public int Column { get; set; }
 
+        public Coordinates()
+        {
+            
+        }
         public Coordinates(int row, int column)
         {
             Row = row;
