@@ -5,12 +5,9 @@ namespace Server.Models.Ships
 {
     public class Carrier : Ship
     {
-        public Carrier(int id, List<Square> shipSquares)
+        public string Name = "Carrier";
+        public Carrier(List<Square> field) : base(field)
         {
-            this.ShipSquares = shipSquares;
-            this.Id = id;
-            this.Name = "Carrier";
-            this.Type = ShipType.Carrier;
         }
     }
 }

@@ -8,21 +8,25 @@ using Server.Models.Ships;
 namespace Server.Services
 {
     public class Game : IGame
-    {public Player Player1 { get; set; }
+    {
+        public Player Player1 { get; set; }
         public Player Player2 { get; set; }
+
+        public Player CurrentPlayer { get; set; }
 
 
         public Game()
         {
             this.Player1 = new Player();
             this.Player2 = new Player();
+            this.CurrentPlayer = Player1;
         }
 
 
         public void PutShip(int shipId, ShipType shipType, List<Square> shipSquares)
         {
-            ShipFactoryMethod shipyard = new ShipFactoryMethod();
-            var ship = shipyard.CreateShip(shipId,shipType,shipSquares);
+            ShipFactory shipyard = new ShipFactory();
+            var ship = shipyard.CreateShip(shipSquares);
 
             foreach (var boardSquare in ship.ShipSquares.SelectMany(shipSquare => Player1.Ocean.Board
                 .Where(boardSquare => shipSquare.Coordinates.Column == boardSquare.Coordinates.Column && shipSquare.Coordinates.Row == boardSquare.Coordinates.Row)))
