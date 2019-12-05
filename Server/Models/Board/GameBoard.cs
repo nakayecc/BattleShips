@@ -75,14 +75,13 @@ namespace Server.Models.Board
                     }
                 }
                 Fleet.AddShip(ShipFactory.CreateShip(shipBody));
- /*               foreach (var shipSquare in shipBody)
+                /*foreach (var shipSquare in shipBody)
                 {
                     foreach (var oceanSquare in unusedSquares.ToList())
                     {
                         if (oceanSquare.IsNeighbour(shipSquare)) unusedSquares.Remove(oceanSquare);
                     }
                 }*/
-                bool y;
             }
             
 
