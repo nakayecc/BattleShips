@@ -24,16 +24,17 @@ namespace Server.Controllers
 
         // GET: api/Player
         [HttpGet]
-        public Player Get()
+        public List<Square> Get()
         {
-            return game.Player2;
+            return game.Player2.Ocean.Board;
         }
 
 
         // POST: api/Player
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Coordinates coordinates)
         {
+            game.Shoot(coordinates);
         }
 
         // PUT: api/Player/5

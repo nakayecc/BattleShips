@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import Board from "./Board";
+import EnemyBoard from "./ai/EnemyBoard";
+import Board from "./player/Board";
 
 export default class Home extends Component {
 
@@ -12,8 +13,8 @@ export default class Home extends Component {
                 <div className="container gameBoard">
                     <div className="row">
                         <div className="col-lg-5">
-                            <h2 className="text-center">Your Board</h2>
-                            <Board/>
+                            <h2 className="text-center">Enemy Board</h2>
+                            <EnemyBoard/>
                         </div>
                         <div className="col-lg-2">
                             <h2 className="text-center">Game Info</h2>
@@ -25,7 +26,7 @@ export default class Home extends Component {
                             </div>
                         </div>
                         <div className="col-lg-5">
-                            <h2 className="text-center">Enemy Board</h2>
+                            <h2 className="text-center">Your Board</h2>
                             <Board/>
                         </div>
                     </div>

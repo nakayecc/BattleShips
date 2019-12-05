@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from "react";
-import axios from "../axios/axios";
+import axios from "../../axios/axios";
 import Square from "./Square";
 
 export default class EnemyBoard extends Component {
@@ -17,14 +17,32 @@ export default class EnemyBoard extends Component {
     }
 
     getSquares = () => {
-        return axios.get('/enemy')
+        return axios.get('/board')
             .then(response => {
                 return response.data;
             });
     };
 
-    updateSquare = () => {
+    hitSquare = async (clickedSquare) => {
+        this.state.squares.map(square => {
+            if (clickedSquare.coordinates === square.coordinates) {
+                axios.post('enemy', {
+                    row: square.coordinates.row,
+                    column: square.coordinates.column
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+            }
+        });
+    };
+    updateSquare = (clickedSquare) => {
         this.setState({isLoading: true});
+        this.hitSquare(clickedSquare);
         setTimeout(function () {
             this.getSquares().then(response => {
                 this.setState({squares: response});

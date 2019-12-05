@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import axios from "../axios/axios";
 
 export default class Square extends Component {
     getSquareValue = (fieldType) => {
@@ -8,7 +7,7 @@ export default class Square extends Component {
                 return "~~";
             }
             case 1: {
-                return "S";
+                return "~~";
             }
             case 2: {
                 return "X";
