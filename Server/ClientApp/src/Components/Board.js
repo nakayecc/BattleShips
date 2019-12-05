@@ -7,62 +7,60 @@ export default class Board extends Component {
         squares: [],
         isLoading: true
     };
-    constructor() {
-        super();
-        this.getSquares();
+
+    componentDidMount() {
+        this.getSquares().then(response => {
+            this.setState({squares: response});
+            this.setState({isLoading: false});
+        });
+
     }
 
-
     getSquares = () => {
-        axios.get('/board')
+        return axios.get('/board')
             .then(response => {
-                this.setState({squares: response.data});
-                this.setState({isLoading : false})
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .finally(function () {
-                // always executed
+                return response.data;
             });
     };
-    hitSquaree = () => {
-        this.setState({isLoading : true});
-        let czas = setInterval(() =>
-            {
-                axios.get('/board')
-                    .then(response => {
-                        this.setState({squares: response.data});
-                        this.setState({isLoading : false})
+
+    hitSquare = async (clickedSquare) => {
+        this.state.squares.map(square => {
+            if (clickedSquare.coordinates === square.coordinates) {
+                axios.post('board', {
+                    row: square.coordinates.row,
+                    column: square.coordinates.column
+                })
+                    .then(function (response) {
+                        console.log(response);
                     })
                     .catch(function (error) {
-                        // handle error
                         console.log(error);
-                    })
-                    .finally(function () {
-                        // always executed
                     });
+
             }
-            , 200);
-
-
-        console.log(this.state.squares);
-        
+        });
     };
-
-
+    updateSquare = (clickedSquare) => {
+        this.setState({isLoading: true});
+        this.hitSquare(clickedSquare);
+        setTimeout(function () {
+            this.getSquares().then(response => {
+                this.setState({squares: response});
+                this.setState({isLoading: false});
+            });
+        }.bind(this), 10)
+    };
 
     render() {
         let counter = 1;
-        console.log(this.state.isLoading);
         let content = this.state.squares.map(square =>
             <Square
                 square={square}
                 squareId={counter++}
-                hitSquaree={this.hitSquaree}
+                hitSquaree={this.updateSquare}
                 squares={this.state.squares}
                 key={counter++}
+                isLoading={this.state.isLoading}
             />);
         return (
             this.state.isLoading === false ? content : <div className="spinner-border" role="status">
