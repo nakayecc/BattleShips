@@ -6,8 +6,7 @@ namespace Server.Models.Ships
     public class Ship
     {
         public List<Square> ShipSquares { get; set; }
-        public string Name { get; set; }
-        public int Id { get; set; }
-        public ShipType Type { get; set; }
+        public List<Square> Neighbours { get; }
+        public bool IsDestroyed { get; set; }
     }
 }
