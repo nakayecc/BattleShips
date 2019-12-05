@@ -6,8 +6,26 @@ namespace Server.Models.Ships
     public class Ship
     {
         public List<Square> ShipSquares { get; set; }
-        public string Name { get; set; }
-        public int Id { get; set; }
-        public ShipType Type { get; set; }
+        public List<Square> Neighbours { get; }
+
+        public Ship(List<Square> field)
+        {
+            ShipSquares = field;
+            foreach (var square in field)
+            {
+                square.fieldType = FieldType.Ship;
+            }
+        }
+        public bool IsDestroyed { get; set; }
+
+        public bool CheckIfSquareIsInShip(Square square)
+        {
+            foreach (var part in ShipSquares)
+            {
+                if (square.Equals(part)) return true;
+            }
+
+            return false;
+        }
     }
 }

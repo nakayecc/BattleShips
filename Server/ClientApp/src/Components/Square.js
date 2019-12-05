@@ -24,6 +24,7 @@ export default class Square extends Component {
         let isShip = "S";
         let ocean = "~~";
 
+
         let spinner = <div className="spinner-border" role="status">
             <span className="sr-only">Loading...</span>
         </div>;
@@ -34,6 +35,7 @@ export default class Square extends Component {
         </div>;
         return (
             content
+
 
         )
     }

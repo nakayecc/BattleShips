@@ -3,10 +3,10 @@ using Server.Models.Board;
 
 namespace Server.Models.Ships
 {
-    public class Carrier : Ship
+    public class Cruiser : Ship
     {
-        public string Name = "Carrier";
-        public Carrier(List<Square> field) : base(field)
+        public string Name = "Cruiser";
+        public Cruiser(List<Square> field) : base(field)
         {
         }
     }

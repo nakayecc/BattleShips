@@ -29,13 +29,7 @@ namespace Server
                     webBuilder.UseStartup<Startup>();
                     webBuilder.ConfigureServices(serviceCollection =>
                     {
-                        serviceCollection.AddSingleton<IGame>(new Game()
-                        {
-                            PlayerGameBoard = new GameBoard(),
-                             EnemyGameBoard = new GameBoard(),
-                             Shipyard = new Shipyard()
-                            
-                        });
+                        serviceCollection.AddSingleton<IGame>(new Game());
                     });
                 });
             

@@ -22,7 +22,7 @@ namespace Server.Controllers
 
         private readonly IGame game;
 
-        // GET: api/Board
+        //GET: api/Board
         [HttpGet]
         public List<Square> Get()
         {
@@ -30,8 +30,17 @@ namespace Server.Controllers
             squares.Add(new Square(1,1));
             game.PutShip(1,ShipType.Carrier, squares);
 
-            return game.PlayerGameBoard.Board;
+            return game.Player1.Ocean.Board;
         }
+        
+        // GET: api/Board
+        
+        /*[HttpGet]
+        public IGame Get()
+        {
+            return game;
+        }*/
+        
 
         // GET: api/Board/5
         [HttpGet("{id}", Name = "Get")]

@@ -1,4 +1,6 @@
-﻿namespace Server.Models.Board
+﻿using System;
+
+namespace Server.Models.Board
 {
     public class Square
     { 
@@ -16,6 +18,14 @@
         {
             return
                 fieldType == FieldType.Ship;
+        }
+
+        public bool IsNeighbour(Square square)
+        {
+            int horizontalDistance = Math.Abs(Coordinates.Column - square.Coordinates.Column);
+            int verticalDistance = Math.Abs(Coordinates.Row - square.Coordinates.Row);
+            return horizontalDistance + verticalDistance == 1;
+            
         }
 
     }
