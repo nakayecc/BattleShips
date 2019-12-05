@@ -24,9 +24,9 @@ namespace Server.Controllers
 
         // GET: api/Player
         [HttpGet]
-        public Player Get()
+        public List<Square> Get()
         {
-            return game.Player1;
+            return game.Player1.Ocean.Board;
         }
 
         // POST: api/Player

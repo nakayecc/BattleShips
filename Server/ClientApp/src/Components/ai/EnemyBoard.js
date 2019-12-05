@@ -17,7 +17,7 @@ export default class EnemyBoard extends Component {
     }
 
     getSquares = () => {
-        return axios.get('/board')
+        return axios.get('/player')
             .then(response => {
                 return response.data;
             });

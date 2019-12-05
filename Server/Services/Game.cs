@@ -12,8 +12,8 @@ namespace Server.Services
     {
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
-
         public Player CurrentPlayer { get; set; }
+        public string win { get; set; }
 
 
         public Game()
@@ -21,6 +21,7 @@ namespace Server.Services
             this.Player1 = new Player("Player");
             this.Player2 = new Player("Si");
             this.CurrentPlayer = Player1;
+            win = "";
         }
 
 
@@ -75,28 +76,35 @@ namespace Server.Services
         {
             var cord = SiCoordinates();
             
-            foreach (var square in Player2.Ocean.Board)
+            foreach (var square in Player2.Ocean.Board
+                .Where(square => square.Coordinates.Column == cord.Column && square.Coordinates.Row == cord.Row)
+                .Where(square => square.fieldType == FieldType.Empty || square.fieldType == FieldType.Ship))
             {
-                if (square.Coordinates.Column == cord.Column && square.Coordinates.Row == cord.Row)
+                if (square.IsOccupied())
                 {
-                    if (square.fieldType == FieldType.Empty || square.fieldType == FieldType.Ship)
-                    {
-                        if (square.IsOccupied())
-                        {
-                            square.fieldType = FieldType.Hit;
-                        }
-                        else
-                        {
-                            square.fieldType = FieldType.Miss;
-                            CurrentPlayer = Player1;
-                        }
-                    }
+                    square.fieldType = FieldType.Hit;
                 }
-
-
-
-
+                else
+                {
+                    square.fieldType = FieldType.Miss;
+                    CurrentPlayer = Player1;
+                }
             }
+
+            if (CheckWin(Player2.Ocean.Board))
+                win = "Player";
+
+            if (CheckWin(Player1.Ocean.Board))
+                win = "Si";
+        }
+
+
+        private bool CheckWin(List<Square> squares)
+        {
+            var count = squares.Count(square => square.fieldType == FieldType.Hit);
+
+            return count == 10 ? true : false;
         }
     }
+
 }

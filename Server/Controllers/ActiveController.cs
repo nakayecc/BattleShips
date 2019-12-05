@@ -13,9 +13,9 @@ namespace Server.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("AllowMyOrigin")]
-    public class BoardController : ControllerBase
+    public class ActiveController : ControllerBase
     {
-        public BoardController(IGame game)
+        public ActiveController(IGame game)
         {
             this.game = game;
         }

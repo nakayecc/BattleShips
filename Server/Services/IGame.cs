@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Server.Models.Board;
 using Server.Models.Ships;
 
@@ -9,6 +10,7 @@ namespace Server.Services
          Player Player1 { get; set; }
          Player Player2 { get; set; }
          Player CurrentPlayer { get; set; }
+         string win { get; set; }
         void PutShip(int shipId, ShipType shipType, List<Square> shipSquares);
         void Shoot(Coordinates coordinates);
 
