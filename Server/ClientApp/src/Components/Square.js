@@ -11,19 +11,14 @@ export default class Square extends Component {
                 return "S";
             }
             case 2: {
-                return "O";
+                return "X";
             }
             case 3: {
-                return "X";
+                return "O";
             }
         }
     };
     render() {
-
-        //console.log(this.props);
-        let isShip = "S";
-        let ocean = "~~";
-
 
         let spinner = <div className="spinner-border" role="status">
             <span className="sr-only">Loading...</span>

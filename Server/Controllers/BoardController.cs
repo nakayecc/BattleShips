@@ -26,10 +26,6 @@ namespace Server.Controllers
         [HttpGet]
         public List<Square> Get()
         {
-            List<Square> squares = new List<Square>();
-            squares.Add(new Square(1,1));
-            game.PutShip(1,ShipType.Carrier, squares);
-
             return game.Player1.Ocean.Board;
         }
         

@@ -44,7 +44,6 @@ namespace Server.Services
                 {
                     if (square.IsOccupied())
                     {
-                        Console.WriteLine("eloooo");
                         square.fieldType = FieldType.Miss;
                     }
                     else

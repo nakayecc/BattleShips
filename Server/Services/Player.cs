@@ -10,7 +10,7 @@ namespace Server.Services
             HasLost = false;
         }
 
-        public GameBoard Ocean { get; set; }
+        public GameBoard Ocean { get; }
         public bool HasLost { get; set; }
         
         
