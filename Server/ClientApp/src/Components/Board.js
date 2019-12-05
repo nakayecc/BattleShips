@@ -48,17 +48,18 @@ export default class Board extends Component {
                 this.setState({squares: response});
                 this.setState({isLoading: false});
             });
-        }.bind(this), 10)
+        }.bind(this), 15)
     };
 
+
+
     render() {
-        let counter = 1;
+        let counter = 0;
         let content = this.state.squares.map(square =>
             <Square
                 square={square}
                 squareId={counter++}
                 hitSquaree={this.updateSquare}
-                squares={this.state.squares}
                 key={counter++}
                 isLoading={this.state.isLoading}
             />);

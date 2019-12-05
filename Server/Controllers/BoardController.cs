@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Serialization;
 using Server.Models.Board;
+using Server.Models.Ships;
 using Server.Services;
 
 
@@ -25,6 +26,9 @@ namespace Server.Controllers
         [HttpGet]
         public List<Square> Get()
         {
+            List<Square> squares = new List<Square>();
+            squares.Add(new Square(1,1));
+            game.PutShip(1,ShipType.Carrier, squares);
 
             return game.PlayerGameBoard.Board;
         }
