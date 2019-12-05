@@ -2,46 +2,40 @@ import React, {Component} from "react";
 import axios from "../axios/axios";
 
 export default class Square extends Component {
-
-    hitSquare = (clickedSquare) => {
-
-
-        let temp = this.props.squares;
-        temp.map(square => {
-            if (clickedSquare.coordinates === square.coordinates) {
-                square.fieldType = 0;
-                axios.post('board', {
-                    row: square.coordinates.row,
-                    column: square.coordinates.column
-                    
-                })
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+    getSquareValue = (fieldType) => {
+        switch (fieldType) {
+            case 0: {
+                return "~~";
             }
-            return square;
-        });
-        let hitSquaree = this.props.hitSquaree;
-        hitSquaree(temp);
+            case 1: {
+                return "S";
+            }
+            case 2: {
+                return "O";
+            }
+            case 3: {
+                return "X";
+            }
+        }
     };
-
-
     render() {
+
+        //console.log(this.props);
         let isShip = "S";
         let ocean = "~~";
-        // "col-xs-1-10 text-center"
+
+
+        let spinner = <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+        </div>;
+        let content = <div
+            className={this.props.square.fieldType === 1 ? "col-xs-1-10 text-center squareShip" : "col-xs-1-10 text-center square"}
+            onClick={this.props.hitSquaree.bind(Square, this.props.square)}>
+            <p className="squareValue">{this.getSquareValue(this.props.square.fieldType)}</p>
+        </div>;
         return (
-            <div
-                className={this.props.square.fieldType === 0 ? "col-xs-1-10 text-center squareShip" : "col-xs-1-10 text-center square"}
-                onClick={this.hitSquare.bind(Square, this.props.square)}>
+            content
 
-
-                <p className="squareValue">{this.props.square.fieldType === 1 ? isShip : ocean}</p>
-
-            </div>
 
         )
     }

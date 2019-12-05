@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -43,6 +44,7 @@ namespace Server.Services
                 {
                     if (square.IsOccupied())
                     {
+                        Console.WriteLine("eloooo");
                         square.fieldType = FieldType.Miss;
                     }
                     else
