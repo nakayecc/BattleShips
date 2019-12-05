@@ -29,13 +29,6 @@ namespace Server.Controllers
             return game.Player1;
         }
 
-        // GET: api/Player/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/Player
         [HttpPost]
         public void Post([FromBody] string value)
