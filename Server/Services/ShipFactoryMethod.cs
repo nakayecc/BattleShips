@@ -5,7 +5,7 @@ using Server.Models.Ships;
 
 namespace Server.Services
 {
-    public class Shipyard
+    public class ShipFactoryMethod
     {
         public Ship CreateShip(int shipId, ShipType shipType, List<Square> shipSquares)
         {

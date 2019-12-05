@@ -6,9 +6,8 @@ namespace Server.Services
 {
     public interface IGame
     {
-         GameBoard PlayerGameBoard { get; set; }
-         GameBoard EnemyGameBoard { get; set; }
-         Shipyard Shipyard { get; set; }
+         Player Player1 { get; set; }
+         Player Player2 { get; set; }
         void PutShip(int shipId, ShipType shipType, List<Square> shipSquares);
         void Shoot(Coordinates coordinates);
 

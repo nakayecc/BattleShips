@@ -21,13 +21,22 @@ namespace Server.Controllers
 
         private readonly IGame game;
 
-        // GET: api/Board
+        /*// GET: api/Board
         [HttpGet]
         public List<Square> Get()
         {
 
             return game.PlayerGameBoard.Board;
+        }*/
+        
+        // GET: api/Board
+        
+        [HttpGet]
+        public IGame Get()
+        {
+            return game;
         }
+        
 
         // GET: api/Board/5
         [HttpGet("{id}", Name = "Get")]
