@@ -15,6 +15,8 @@ namespace Server.Services
 
         public Player CurrentPlayer { get; set; }
 
+        private List<Tuple<int, int>> siShooTuples;
+
 
         public Game()
         {
@@ -47,14 +49,53 @@ namespace Server.Services
                     {
                         if (square.IsOccupied())
                         {
-                            square.fieldType = FieldType.Miss;
+                            square.fieldType = FieldType.Hit;
                         }
                         else
                         {
-                            square.fieldType = FieldType.Hit;
+                            square.fieldType = FieldType.Miss;
+                            Si();
                         }
                     }
                 }
+            }
+
+        }
+
+        private Coordinates SiCoordinates()
+        {
+            Random random = new Random();
+
+            var column = random.Next(1, 11);
+            var row = random.Next(1, 11);
+
+            return new Coordinates(row,column);
+        }
+
+        private void Si()
+        {
+            var cord = SiCoordinates();
+            
+            foreach (var square in Player2.Ocean.Board)
+            {
+                if (square.Coordinates.Column == cord.Column && square.Coordinates.Row == cord.Row)
+                {
+                    if (square.fieldType == FieldType.Empty || square.fieldType == FieldType.Ship)
+                    {
+                        if (square.IsOccupied())
+                        {
+                            square.fieldType = FieldType.Hit;
+                        }
+                        else
+                        {
+                            square.fieldType = FieldType.Miss;
+                        }
+                    }
+                }
+
+
+
+
             }
         }
     }
