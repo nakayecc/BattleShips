@@ -30,7 +30,8 @@ namespace Server.Services
             var ship = ShipFactory.CreateShip(shipSquares);
 
             foreach (var boardSquare in ship.ShipSquares.SelectMany(shipSquare => Player1.Ocean.Board
-                .Where(boardSquare => shipSquare.Coordinates.Column == boardSquare.Coordinates.Column && shipSquare.Coordinates.Row == boardSquare.Coordinates.Row)))
+                .Where(boardSquare => shipSquare.Coordinates.Column == boardSquare.Coordinates.Column &&
+                                      shipSquare.Coordinates.Row == boardSquare.Coordinates.Row)))
             {
                 boardSquare.fieldType = FieldType.Ship;
             }
@@ -42,17 +43,19 @@ namespace Server.Services
             {
                 if (square.Coordinates.Column == coordinates.Column && square.Coordinates.Row == coordinates.Row)
                 {
-                    if (square.IsOccupied())
+                    if (square.fieldType == FieldType.Empty || square.fieldType == FieldType.Ship)
                     {
-                        square.fieldType = FieldType.Miss;
-                    }
-                    else
-                    {
-                        square.fieldType = FieldType.Hit;
+                        if (square.IsOccupied())
+                        {
+                            square.fieldType = FieldType.Miss;
+                        }
+                        else
+                        {
+                            square.fieldType = FieldType.Hit;
+                        }
                     }
                 }
             }
         }
-
     }
 }
