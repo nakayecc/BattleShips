@@ -23,7 +23,7 @@ export default class Square extends Component {
             <span className="sr-only">Loading...</span>
         </div>;
         let content = <div
-            className={this.props.square.fieldType === 1 ? "col-xs-1-10 text-center squareShip" : "col-xs-1-10 text-center square"}
+            className="col-xs-1-10 text-center square"
             onClick={this.props.hitSquaree.bind(Square, this.props.square)}>
             <p className="squareValue">{this.getSquareValue(this.props.square.fieldType)}</p>
         </div>;
