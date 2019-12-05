@@ -9,7 +9,7 @@ export default class Square extends Component {
         let temp = this.props.squares;
         temp.map(square => {
             if (clickedSquare.coordinates === square.coordinates) {
-                square.fieldType = 0;
+                //square.fieldType = 3;
                 axios.post('board', {
                     row: square.coordinates.row,
                     column: square.coordinates.column
@@ -25,7 +25,7 @@ export default class Square extends Component {
             return square;
         });
         let hitSquaree = this.props.hitSquaree;
-        hitSquaree(temp);
+        hitSquaree();
     };
 
 
@@ -35,11 +35,11 @@ export default class Square extends Component {
         // "col-xs-1-10 text-center"
         return (
             <div
-                className={this.props.square.fieldType === 0 ? "col-xs-1-10 text-center squareShip" : "col-xs-1-10 text-center square"}
+                className={this.props.square.fieldType === 1 ? "col-xs-1-10 text-center squareShip" : "col-xs-1-10 text-center square"}
                 onClick={this.hitSquare.bind(Square, this.props.square)}>
 
 
-                <p className="squareValue">{this.props.square.fieldType === 0 ? isShip : ocean}</p>
+                <p className="squareValue">{this.props.square.fieldType === 3 ? isShip : ocean}</p>
 
             </div>
 
