@@ -26,7 +26,7 @@ namespace Server.Services
         public void PutShip(int shipId, ShipType shipType, List<Square> shipSquares)
         {
             ShipFactory shipyard = new ShipFactory();
-            var ship = shipyard.CreateShip(shipSquares);
+            var ship = ShipFactory.CreateShip(shipSquares);
 
             foreach (var boardSquare in ship.ShipSquares.SelectMany(shipSquare => Player1.Ocean.Board
                 .Where(boardSquare => shipSquare.Coordinates.Column == boardSquare.Coordinates.Column && shipSquare.Coordinates.Row == boardSquare.Coordinates.Row)))

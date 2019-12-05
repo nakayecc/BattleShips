@@ -39,7 +39,7 @@ export default class Square extends Component {
                 onClick={this.hitSquare.bind(Square, this.props.square)}>
 
 
-                <p className="squareValue">{this.props.square.fieldType === 0 ? isShip : ocean}</p>
+                <p className="squareValue">{this.props.square.fieldType === 1 ? isShip : ocean}</p>
 
             </div>
 

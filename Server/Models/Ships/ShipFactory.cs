@@ -7,19 +7,16 @@ namespace Server.Services
 {
     public class ShipFactory
     {
-        public Ship CreateShip(List<Square> shipSquares)
+        public static Ship CreateShip(List<Square> shipSquares)
         {
             switch (shipSquares.Count)
             {
                 case 2:
-                    break; //destroyer
-
+                    return new Destroyer(shipSquares);
                 case 3:
-                    break; //cruiser
-
+                    return new Cruiser(shipSquares);
                 case 4:
-                    break; //battleship
-
+                    return new Battleship(shipSquares);
                 case 5:
                     return new Carrier(shipSquares);
                 default:

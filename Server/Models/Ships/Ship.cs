@@ -11,6 +11,10 @@ namespace Server.Models.Ships
         public Ship(List<Square> field)
         {
             ShipSquares = field;
+            foreach (var square in field)
+            {
+                square.fieldType = FieldType.Ship;
+            }
         }
         public bool IsDestroyed { get; set; }
 

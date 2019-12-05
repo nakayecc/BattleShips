@@ -6,11 +6,16 @@ namespace Server.Models.Ships
 {
     public class Fleet
     {
-        public List<Ship> Ships { get; }
+        public List<Ship> Ships { get; set;  }
 
         public bool IsDestroyed()
         {
             return Ships.Count == Ships.Count(ship => ship.IsDestroyed);
+        }
+
+        public Fleet()
+        {
+            this.Ships = new List<Ship>();
         }
 
         public bool CheckIfSquareIsShip(Square square)
