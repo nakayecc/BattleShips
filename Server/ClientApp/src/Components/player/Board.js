@@ -32,7 +32,7 @@ export default class Board extends Component {
                 this.setState({squares: response});
                 this.setState({isLoading: false});
             });
-        }.bind(this), 50)
+        }.bind(this), 350)
     };
 
 
