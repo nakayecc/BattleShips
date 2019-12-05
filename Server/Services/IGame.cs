@@ -8,6 +8,7 @@ namespace Server.Services
     {
          Player Player1 { get; set; }
          Player Player2 { get; set; }
+         Player CurrentPlayer { get; set; }
         void PutShip(int shipId, ShipType shipType, List<Square> shipSquares);
         void Shoot(Coordinates coordinates);
 

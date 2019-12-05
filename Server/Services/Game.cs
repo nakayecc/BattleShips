@@ -15,13 +15,11 @@ namespace Server.Services
 
         public Player CurrentPlayer { get; set; }
 
-        private List<Tuple<int, int>> siShooTuples;
-
 
         public Game()
         {
-            this.Player1 = new Player();
-            this.Player2 = new Player();
+            this.Player1 = new Player("Player");
+            this.Player2 = new Player("Si");
             this.CurrentPlayer = Player1;
         }
 
@@ -54,6 +52,7 @@ namespace Server.Services
                         else
                         {
                             square.fieldType = FieldType.Miss;
+                            CurrentPlayer = Player2;
                             Si();
                         }
                     }
@@ -89,6 +88,7 @@ namespace Server.Services
                         else
                         {
                             square.fieldType = FieldType.Miss;
+                            CurrentPlayer = Player1;
                         }
                     }
                 }
