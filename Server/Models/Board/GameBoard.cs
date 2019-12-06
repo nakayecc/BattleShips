@@ -34,17 +34,16 @@ namespace Server.Models.Board
         {
             this.Fleet = new Fleet();
             bool AllShipsOnBoard = false;
-            List<Square> unusedSquares = new List<Square>(this.Board);
-            var shipLengths = new int[] {2, 3, 3, 4, 5};
-            for (int currentShipIndex=0; currentShipIndex<shipLengths.Length; currentShipIndex++)
+            var unusedSquares = new List<Square>(this.Board);
+            var shipLengths = new[] {2, 3, 3, 4, 5};
+            foreach (var shipLength in shipLengths)
             {
-                var shipLength = shipLengths[currentShipIndex];
                 var rnd = new Random();
                 var orientation = (Orientation) rnd.Next(Enum.GetNames(typeof(Orientation)).Length);
-                Square StartSquare = PickRandomSquare(shipLength,orientation);
-                int row = StartSquare.Coordinates.Row;
-                int col = StartSquare.Coordinates.Column;
-                List<Square> shipBody = new List<Square>();
+                Square startSquare = PickRandomSquare(shipLength,orientation);
+                int row = startSquare.Coordinates.Row;
+                int col = startSquare.Coordinates.Column;
+                var shipBody = new List<Square>();
                 if (orientation == Orientation.Horizontal)
                 {
                     int[] horizontal = new int[shipLength];
@@ -75,13 +74,13 @@ namespace Server.Models.Board
                     }
                 }
                 Fleet.AddShip(ShipFactory.CreateShip(shipBody));
-                /*foreach (var shipSquare in shipBody)
+                foreach (var shipSquare in shipBody)
                 {
                     foreach (var oceanSquare in unusedSquares.ToList())
                     {
                         if (oceanSquare.IsNeighbour(shipSquare)) unusedSquares.Remove(oceanSquare);
                     }
-                }*/
+                }
             }
             
 
@@ -91,6 +90,7 @@ namespace Server.Models.Board
                 {
                     var rnd = new Random();
                     var s = unusedSquares[rnd.Next(unusedSquares.Count)];
+                    if (!CheckIfAllFieldsOfShipAreAvailable(s, shipLength, orientation)) continue;
                     switch (orientation)
                     {
                         case Orientation.Horizontal when s.Coordinates.Column <= 11 - shipLength:
@@ -100,8 +100,43 @@ namespace Server.Models.Board
                         default:
                             continue;
                     }
-                    
                 }
+            }
+            
+
+            bool CheckIfAllFieldsOfShipAreAvailable(Square square, int length, Orientation orientation)
+            {
+                int countdownOfAvailable = length;
+                int sqRow = square.Coordinates.Row;
+                int sqCol = square.Coordinates.Column;
+                if (orientation == Orientation.Horizontal)
+                {
+
+                    
+                    
+                        foreach (var unusedSquare in unusedSquares)
+                        {
+                            int unRow = unusedSquare.Coordinates.Row;
+                            int unCol = unusedSquare.Coordinates.Column;
+                            if (unRow == sqRow && unCol >= sqCol && unCol < sqCol + length)
+                                countdownOfAvailable--;
+                        }
+
+
+                }
+                else
+                {
+
+                        foreach (var unusedSquare in unusedSquares)
+                        {
+                            int unRow = unusedSquare.Coordinates.Row;
+                            int unCol = unusedSquare.Coordinates.Column;
+                            if (unCol == sqCol && unRow >= sqRow && unRow < sqRow + length)
+                                countdownOfAvailable--;
+                        }
+                }
+
+                return countdownOfAvailable == 0;
             }
         }
 

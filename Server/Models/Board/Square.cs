@@ -24,7 +24,10 @@ namespace Server.Models.Board
         {
             int horizontalDistance = Math.Abs(Coordinates.Column - square.Coordinates.Column);
             int verticalDistance = Math.Abs(Coordinates.Row - square.Coordinates.Row);
-            return horizontalDistance + verticalDistance == 1;
+            bool leftRighNeighbour = (horizontalDistance + verticalDistance == 1);
+            bool obliqueNeighbour = horizontalDistance == 1 && verticalDistance == 1;
+            
+            return leftRighNeighbour || obliqueNeighbour;
             
         }
 
