@@ -91,19 +91,17 @@ namespace Server.Services
                 }
             }
 
-            if (CheckWin(Player2.Ocean.Board))
+            if (CheckWin(Player2))
                 win = "Player";
 
-            if (CheckWin(Player1.Ocean.Board))
+            if (CheckWin(Player1))
                 win = "Si";
         }
 
 
-        private bool CheckWin(List<Square> squares)
+        private bool CheckWin(Player player)
         {
-            var count = squares.Count(square => square.fieldType == FieldType.Hit);
-
-            return count == 10 ? true : false;
+            return player.HasLost();
         }
     }
 

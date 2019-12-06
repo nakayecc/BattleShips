@@ -8,13 +8,16 @@ namespace Server.Services
         {
             Name = name;
             Ocean = new GameBoard();
-            HasLost = false;
         }
 
         public GameBoard Ocean { get; }
-        public bool HasLost { get; set; }
+
+        public bool HasLost()
+        {
+            return Ocean.Fleet.IsDestroyed();
+        }
         public string Name { get; set; }
-        
-        
+
+
     }
 }
